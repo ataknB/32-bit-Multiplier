@@ -1,28 +1,74 @@
-module  Multiplier_tb();
+`timescale 1ns/1ps
 
-    logic [3:0]in0;
-    logic [3:0]in1;
-    logic carry_in;
+module Multiplier_4bit_tb;
 
-    logic carry_out;   
-    logic [3:0]result;
+    // Testbench signals
+    //logic clk;
+    //logic rst;
+    logic [3:0] in0;    // multiplicand
+    logic [3:0] in1;    // multiplier
+    logic done;
+    logic [7:0] result;
 
-    Kogge_Stone_4bit kogge_stone_4bit(
+    // Instantiate the DUT (Device Under Test)
+    Multiplier_4bit #(
+        .WIDTH(4)
+    ) dut (
+        //.clk(clk),
+        //.rst(rst),
         .in0(in0),
         .in1(in1),
-        .carry_in(carry_in),
-        .carry_out(carry_out),
+        .done(done),
         .result(result)
     );
 
+    /*
+    // Clock generation
     initial begin
-        in0 = 4'b0001;
-        in1 = 4'b0010;
-        carry_in = 1'b0;
-        #10;
-        $display("Result: %b", result);
-        $display("Carry Out: %b", carry_out);
+        clk = 0;
+        forever #5 clk = ~clk;  // 10ns period
+    end
+    */
+
+    // Test procedure
+    initial begin
+        /*
+        // Initialize signals
+        rst = 1;
+        in0 = 0;
+        in1 = 0;
+        
+        #20;  // Wait for initial stabilization
+        rst = 0;
+        */
+        // Test cases
+        // Test 1: 3 * 2 = 6
+        //#10;
+        in0 = 4'd2;
+        in1 = 4'd3;
+        #20;
+
+        in0 = 4'd5;
+        in1 = 4'd3;
+        #20;
+
+        in0 = 4'd7;
+        in1 = 4'd2;
+        #20;
+
+        in0 = 4'd4;
+        in1 = 4'd4;
+        #20;
+
+        in0 = 4'd0;
+        in1 = 4'd5;
+        #20;
+
+        in0 = 4'd15;
+        in1 = 4'd1;
+        #20;
+
+        $finish;
     end
 
-    
 endmodule
