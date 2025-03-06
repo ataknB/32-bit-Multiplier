@@ -3,8 +3,8 @@
 module Multiplier_32bit_tb;
 
     // Testbench signals
-    //logic clk;
-    //logic rst;
+    logic clk;
+    logic rst;
     logic [31:0] in0;    // multiplicand
     logic [31:0] in1;    // multiplier
     logic done;
@@ -20,17 +20,15 @@ module Multiplier_32bit_tb;
         .result(result)
     );
 
-    /*
     // Clock generation
     initial begin
         clk = 0;
         forever #5 clk = ~clk;  // 10ns period
     end
-    */
+
 
     // Test procedure
     initial begin
-        /*
         // Initialize signals
         rst = 1;
         in0 = 0;
@@ -38,10 +36,9 @@ module Multiplier_32bit_tb;
         
         #20;  // Wait for initial stabilization
         rst = 0;
-        */
         // Test cases
         // Test 1: 3 * 2 = 6
-        //#10;
+        #10;
         in0 = 32'd6;
         in1 = 32'd6;
         #20;
