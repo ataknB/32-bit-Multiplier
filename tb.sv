@@ -12,8 +12,8 @@ module Multiplier_32bit_tb;
 
     // Instantiate the DUT (Device Under Test)
     Multiplier_32bit TB (
-        //.clk(clk),
-        //.rst(rst),
+        .clk(clk),
+        .rst(rst),
         .in0(in0),
         .in1(in1),
         .done(done),
@@ -33,35 +33,36 @@ module Multiplier_32bit_tb;
         rst = 1;
         in0 = 0;
         in1 = 0;
-        
-        #20;  // Wait for initial stabilization
+        #1;  // Wait for initial stabilization
         rst = 0;
+        #1;  // Wait for initial stabilization
+        rst = 1;
         // Test cases
         // Test 1: 3 * 2 = 6
-        #10;
+        #5;
         in0 = 32'd6;
         in1 = 32'd6;
-        #20;
+        #10;
 
         in0 = 32'd5;
         in1 = 32'd3;
-        #20;
+        #10;
 
         in0 = 32'd7;
         in1 = 32'd2;
-        #20;
+        #30;
 
         in0 = 32'd4;
         in1 = 32'd4;
-        #20;
+        #30;
 
         in0 = 32'd0;
         in1 = 32'd5;
-        #20;
+        #30;
 
         in0 = 32'd15;
         in1 = 32'd1;
-        #20;
+        #30;
 
         $finish;
     end
